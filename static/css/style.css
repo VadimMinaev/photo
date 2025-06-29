@@ -10,3 +10,13 @@
     object-fit: cover;
     border-radius: 8px;
 }
+body {
+    background-image: url('C:\photo\static\images\photo_2025-06-29_17-29-05.jpg');
+    background-size: cover;       /* Растянуть фон на весь экран */
+    background-repeat: no-repeat; /* Не повторять */
+    background-position: center;  /* Центрировать фон */
+    background-attachment: fixed; /* Фон фиксируется при прокрутке */
+    margin: 0;                    /* Убрать отступы */
+    padding: 0;
+    height: 100vh;                /* Высота страницы 100% окна */
+}
