@@ -4,20 +4,16 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Путь для хранения обоев
 WALLPAPER_FOLDER = 'static/images'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['WALLPAPER_FOLDER'] = WALLPAPER_FOLDER
 
-# Главная - список альбомов
 @app.route('/')
 def index():
     albums = [name for name in os.listdir(UPLOAD_FOLDER)
               if os.path.isdir(os.path.join(UPLOAD_FOLDER, name))]
     return render_template('index.html', albums=albums)
 
-# Просмотр фото в альбоме
 @app.route('/album/<album_name>')
 def album(album_name):
     album_path = os.path.join(UPLOAD_FOLDER, album_name)
@@ -27,7 +23,6 @@ def album(album_name):
               if photo.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
     return render_template('album.html', album=album_name, photos=photos)
 
-# Загрузка фото с возможностью создания нового альбома
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     albums = [name for name in os.listdir(UPLOAD_FOLDER)
@@ -35,10 +30,8 @@ def upload():
     if request.method == 'POST':
         album = request.form.get('album')
         new_album = request.form.get('new_album', '').strip()
-
         if new_album:
             album = new_album
-
         file = request.files.get('photo')
         if album and file and file.filename != '':
             album_path = os.path.join(UPLOAD_FOLDER, album)
@@ -49,7 +42,6 @@ def upload():
             return redirect(url_for('album', album_name=album))
     return render_template('upload.html', albums=albums)
 
-# Страница настроек и загрузка обоев
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
     message = ''
@@ -60,19 +52,16 @@ def settings():
             wallpaper_path = os.path.join(WALLPAPER_FOLDER, filename)
             file.save(wallpaper_path)
             message = 'Обои успешно загружены!'
-            # Сохраняем имя файла в сессии или в файл для использования в шаблонах
             with open('current_wallpaper.txt', 'w') as f:
                 f.write(filename)
         else:
             message = 'Ошибка загрузки файла.'
-    # Читаем текущие обои
     wallpaper_filename = None
     if os.path.exists('current_wallpaper.txt'):
         with open('current_wallpaper.txt', 'r') as f:
             wallpaper_filename = f.read().strip()
     return render_template('settings.html', message=message, wallpaper=wallpaper_filename)
 
-# Добавим функцию для передачи текущих обоев в шаблоны
 @app.context_processor
 def inject_wallpaper():
     wallpaper_url = None

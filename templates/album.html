@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 {% block title %}Альбом: {{ album }}{% endblock %}
 {% block content %}
-<h1>Альбом: {{ album }}</h1>
-<a href="{{ url_for('index') }}">← Назад к альбомам</a>
+<div class="centered-container">
+    <h1>Альбом: {{ album }}</h1>
+    <a href="{{ url_for('index') }}" class="button-red">← Назад к альбомам</a>
 
-<div class="gallery">
-    {% for photo in photos %}
-        <img src="{{ url_for('static', filename='uploads/' + album + '/' + photo) }}" alt="{{ photo }}" onclick="openModal(this.src)">
-    {% else %}
-        <p>Фото в альбоме отсутствуют</p>
-    {% endfor %}
-</div>
+    <div class="gallery">
+        {% for photo in photos %}
+            <img src="{{ url_for('static', filename='uploads/' + album + '/' + photo) }}" alt="{{ photo }}" onclick="openModal(this.src)">
+        {% else %}
+            <p>Фото в альбоме отсутствуют</p>
+        {% endfor %}
+    </div>
 
-<div id="modal" onclick="closeModal()">
-    <img id="modal-img" src="" alt="Фото">
+    <div id="modal" onclick="closeModal()">
+        <img id="modal-img" src="" alt="Фото">
+    </div>
 </div>
 
 <script>

@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Настройки{% endblock %}
 {% block content %}
-<h1>Настройки</h1>
+<div class="centered-container">
+    <h1>Настройки</h1>
+    <form action="{{ url_for('settings') }}" method="post" enctype="multipart/form-data">
+        <label for="wallpaper">Загрузить обои (фон):</label><br><br>
+        <input type="file" name="wallpaper" id="wallpaper" accept="image/*" required><br><br>
+        <button type="submit" class="button-red">Загрузить обои</button>
+    </form>
 
-<form action="{{ url_for('settings') }}" method="post" enctype="multipart/form-data">
-    <label for="wallpaper">Загрузить обои (фон):</label><br><br>
-    <input type="file" name="wallpaper" id="wallpaper" accept="image/*" required><br><br>
-    <button type="submit" class="button-red">Загрузить обои</button>
-</form>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
 
-{% if message %}
-    <p>{{ message }}</p>
-{% endif %}
-
-<a href="{{ url_for('index') }}" class="button-red" style="margin-top: 20px;">← Назад</a>
+    <a href="{{ url_for('index') }}" class="button-red" style="margin-top: 20px;">← Назад</a>
+</div>
 {% endblock %}

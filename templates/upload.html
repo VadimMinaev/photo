@@ -1,25 +1,27 @@
 {% extends "base.html" %}
 {% block title %}Загрузить фото{% endblock %}
 {% block content %}
-<h1>Загрузить фото</h1>
-<form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
-    <label for="album">Выберите альбом:</label>
-    <select name="album" id="album">
-        {% for album in albums %}
-            <option value="{{ album }}">{{ album }}</option>
-        {% endfor %}
-    </select>
-    <br><br>
+<div class="centered-container">
+    <h1>Загрузить фото</h1>
+    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+        <label for="album">Выберите альбом:</label>
+        <select name="album" id="album">
+            {% for album in albums %}
+                <option value="{{ album }}">{{ album }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
 
-    <label for="new_album">Или создайте новый альбом:</label>
-    <input type="text" name="new_album" id="new_album" placeholder="Имя нового альбома">
-    <br><br>
+        <label for="new_album">Или создайте новый альбом:</label>
+        <input type="text" name="new_album" id="new_album" placeholder="Имя нового альбома">
+        <br><br>
 
-    <label for="photo">Выберите фото:</label>
-    <input type="file" name="photo" id="photo" accept="image/*" required>
-    <br><br>
+        <label for="photo">Выберите фото:</label>
+        <input type="file" name="photo" id="photo" accept="image/*" required>
+        <br><br>
 
-    <button type="submit" class="button-red">Загрузить</button>
-</form>
-<a href="{{ url_for('index') }}">← Назад к альбомам</a>
+        <button type="submit" class="button-red">Загрузить</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="button-red">← Назад к альбомам</a>
+</div>
 {% endblock %}
