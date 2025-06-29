@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Мой Фотоархив</h1>
+    
+    <!-- Форма загрузки -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="photo" accept="image/*">
+        <button type="submit">Загрузить</button>
+    </form>
+
+    <!-- Галерея -->
+    <div class="gallery">
+        {% for image in images %}
+            <img src="{{ url_for('static', filename='uploads/' + image) }}" alt="{{ image }}">
+        {% endfor %}
+    </div>
+</body>
+</html>
