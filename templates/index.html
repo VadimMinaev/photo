@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Мой Фотоархив - Альбомы</title>
+    <meta charset="UTF-8">
+    <title>Альбомы</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body style="text-align: center; font-family: Arial, sans-serif;">
+<body>
     <h1>Альбомы</h1>
-    <ul style="list-style: none; padding: 0; margin: 0 auto; display: table;">
+    <ul>
         {% for album in albums %}
-            <li style="margin: 10px 0;">
-                <a href="{{ url_for('album', album_name=album) }}" 
-                   style="display: inline-block; background-color: #ff0000 !important; color: white !important; padding: 10px 20px !important; text-decoration: none !important; border-radius: 5px !important; font-weight: bold;">
-                    {{ album }}
-                </a>
-            </li>
+            <li><a href="{{ url_for('album', album_name=album) }}">{{ album }}</a></li>
         {% else %}
-            <li style="margin: 10px 0;">
-                <span style="display: inline-block; background-color: #ff0000 !important; color: white !important; padding: 10px 20px !important; border-radius: 5px !important;">
-                    Альбомы не найдены
-                </span>
-            </li>
+            <li>Альбомы не найдены</li>
         {% endfor %}
     </ul>
-
-    <a href="{{ url_for('upload') }}" 
-       style="display: inline-block; margin-top: 20px; background-color: #ff0000 !important; color: white !important; padding: 10px 20px !important; text-decoration: none !important; border-radius: 5px !important; font-weight: bold;">
-        Загрузить фото
-    </a>
+    <a href="{{ url_for('upload') }}">Загрузить фото</a>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Альбом: {{ album }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
@@ -21,7 +22,6 @@
         .gallery img:hover {
             transform: scale(1.05);
         }
-        /* Стили для модального окна */
         #modal {
             display: none;
             position: fixed;
@@ -37,9 +37,6 @@
             max-height: 90%;
             border-radius: 10px;
         }
-        #modal.close {
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -54,7 +51,6 @@
         {% endfor %}
     </div>
 
-    <!-- Модальное окно для просмотра фото -->
     <div id="modal" onclick="closeModal()">
         <img id="modal-img" src="" alt="Фото">
     </div>
@@ -69,7 +65,6 @@
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
         }
-        // Закрыть модал по ESC
         document.addEventListener('keydown', function(event) {
             if(event.key === "Escape") {
                 closeModal();
