@@ -1,31 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Заголовок страницы{% endblock %}
+{% block title %}Настройки{% endblock %}
 {% block content %}
-<!-- ваш контент -->
+<h1>Настройки</h1>
+
+<form action="{{ url_for('settings') }}" method="post" enctype="multipart/form-data">
+    <label for="wallpaper">Загрузить обои (фон):</label><br><br>
+    <input type="file" name="wallpaper" id="wallpaper" accept="image/*" required><br><br>
+    <button type="submit" class="button-red">Загрузить обои</button>
+</form>
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+
+<a href="{{ url_for('index') }}" class="button-red" style="margin-top: 20px;">← Назад</a>
 {% endblock %}
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Настройки</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="centered-container">
-        <h1>Настройки</h1>
-
-        <form action="{{ url_for('settings') }}" method="post" enctype="multipart/form-data">
-            <label for="wallpaper">Загрузить обои (фон):</label><br><br>
-            <input type="file" name="wallpaper" id="wallpaper" accept="image/*" required><br><br>
-            <button type="submit" class="button-red">Загрузить обои</button>
-        </form>
-
-        {% if message %}
-            <p>{{ message }}</p>
-        {% endif %}
-
-        <a href="{{ url_for('index') }}" class="button-red" style="margin-top: 20px;">← Назад</a>
-    </div>
-</body>
-</html>
