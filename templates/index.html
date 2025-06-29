@@ -3,6 +3,33 @@
 <head>
     <title>Мой Фотоархив - Альбомы</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Центрируем кнопку по горизонтали и вертикали */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* по горизонтали */
+            justify-content: center; /* по вертикали */
+            height: 100vh; /* высота экрана */
+            margin: 0;
+        }
+
+        /* Стили для кнопки-ссылки */
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: darkred;
+        }
+    </style>
 </head>
 <body>
     <h1>Альбомы</h1>
