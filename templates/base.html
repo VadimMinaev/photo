@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Photo App{% endblock %}</title>
+    <!-- Проверьте, что файл существует: static/css/style.css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         body {
             {% if wallpaper_url %}
-            background-image: url('{{ wallpaper_url }}');
+            background-image: url('{{ wallpaper_url }}');  <!-- Убедитесь, что wallpaper_url передаётся -->
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
             {% else %}
-            background-color: #f9f9f9;
+            background-color: #f9f9f9;  <!-- Фолбек, если wallpaper_url нет -->
             {% endif %}
             margin: 0;
             padding: 0;
@@ -23,6 +24,6 @@
     </style>
 </head>
 <body>
-    {% block content %}{% endblock %}
+    {% block content %}{% endblock %}  <!-- Контент будет подставляться из дочерних шаблонов -->
 </body>
 </html>
