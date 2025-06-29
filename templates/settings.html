@@ -5,8 +5,15 @@
     <h1>Настройки</h1>
     <form action="{{ url_for('settings') }}" method="post" enctype="multipart/form-data">
         <label for="wallpaper">Загрузить обои (фон):</label><br><br>
-        <input type="file" name="wallpaper" id="wallpaper" accept="image/*" required><br><br>
-        <button type="submit" class="button-red">Загрузить обои</button>
+        <input type="file" name="wallpaper" id="wallpaper" accept="image/*"><br><br>
+
+        <label for="text_color">Цвет текста (hex, например, ff0000):</label><br>
+        <input type="text" name="text_color" id="text_color" pattern="[A-Fa-f0-9]{6}" placeholder="ff0000" value="{{ text_color or '' }}"><br><br>
+
+        <label for="font_size">Размер шрифта заголовков (в пикселях):</label><br>
+        <input type="number" name="font_size" id="font_size" min="10" max="72" value="{{ font_size or 24 }}"><br><br>
+
+        <button type="submit" class="button-red">Сохранить настройки</button>
     </form>
 
     {% if message %}
