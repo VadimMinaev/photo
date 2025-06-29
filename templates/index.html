@@ -6,14 +6,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Альбомы</h1>
-    <ul>
-        {% for album in albums %}
-            <li><a href="{{ url_for('album', album_name=album) }}">{{ album }}</a></li>
-        {% else %}
-            <li>Альбомы не найдены</li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('upload') }}">Загрузить фото</a>
+    <div class="centered-container">
+        <h1>Альбомы</h1>
+        <ul>
+            {% for album in albums %}
+                <li><a href="{{ url_for('album', album_name=album) }}">{{ album }}</a></li>
+            {% else %}
+                <li>Альбомы не найдены</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('upload') }}" class="button-red">Загрузить фото</a>
+        <a href="{{ url_for('settings') }}" class="button-red">Настройки</a>
+    </div>
 </body>
 </html>

@@ -6,6 +6,10 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# Путь для хранения обоев
+WALLPAPER_FOLDER = 'static/images'
+app.config['WALLPAPER_FOLDER'] = WALLPAPER_FOLDER
+
 # Главная - список альбомов
 @app.route('/')
 def index():
@@ -45,7 +49,38 @@ def upload():
             return redirect(url_for('album', album_name=album))
     return render_template('upload.html', albums=albums)
 
+# Страница настроек и загрузка обоев
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    message = ''
+    if request.method == 'POST':
+        file = request.files.get('wallpaper')
+        if file and file.filename != '':
+            filename = secure_filename(file.filename)
+            wallpaper_path = os.path.join(WALLPAPER_FOLDER, filename)
+            file.save(wallpaper_path)
+            message = 'Обои успешно загружены!'
+            # Сохраняем имя файла в сессии или в файл для использования в шаблонах
+            with open('current_wallpaper.txt', 'w') as f:
+                f.write(filename)
+        else:
+            message = 'Ошибка загрузки файла.'
+    # Читаем текущие обои
+    wallpaper_filename = None
+    if os.path.exists('current_wallpaper.txt'):
+        with open('current_wallpaper.txt', 'r') as f:
+            wallpaper_filename = f.read().strip()
+    return render_template('settings.html', message=message, wallpaper=wallpaper_filename)
+
+# Добавим функцию для передачи текущих обоев в шаблоны
+@app.context_processor
+def inject_wallpaper():
+    wallpaper_url = None
+    if os.path.exists('current_wallpaper.txt'):
+        with open('current_wallpaper.txt', 'r') as f:
+            filename = f.read().strip()
+            wallpaper_url = url_for('static', filename='images/' + filename)
+    return dict(wallpaper_url=wallpaper_url)
 
 if __name__ == '__main__':
-    # Запуск с доступом из локальной сети
     app.run(host='0.0.0.0', port=5000, debug=True)

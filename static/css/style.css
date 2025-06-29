@@ -1,23 +1,69 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f9f9f9;
+/* Центрируем все основные кнопки по вертикали и горизонтали */
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    gap: 20px;
 }
 
-ul {
-    list-style-type: none;
-    padding-left: 0;
+/* Красная pill-кнопка */
+.button-red {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 50px; /* pill shape */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 180px;
+    text-align: center;
+    display: inline-block;
 }
 
-ul li {
-    margin-bottom: 10px;
+.button-red:hover {
+    background-color: #d62828;
 }
 
-a {
+/* Стили для ссылок, чтобы они выглядели как кнопки */
+a.button-red {
     text-decoration: none;
-    color: #007bff;
 }
 
-a:hover {
-    text-decoration: underline;
+/* Существующие стили галереи и др. оставляем без изменений */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Модальное окно для фото */
+#modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+#modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
 }
