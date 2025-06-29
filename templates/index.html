@@ -3,44 +3,29 @@
 <head>
     <title>Мой Фотоархив - Альбомы</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <style>
-        /* Центрируем кнопку по горизонтали и вертикали */
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* по горизонтали */
-            justify-content: center; /* по вертикали */
-            height: 100vh; /* высота экрана */
-            margin: 0;
-        }
-
-        /* Стили для кнопки-ссылки */
-        a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: red;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        a:hover {
-            background-color: darkred;
-        }
-    </style>
 </head>
-<body>
+<body style="text-align: center; font-family: Arial, sans-serif;">
     <h1>Альбомы</h1>
-    <ul>
+    <ul style="list-style: none; padding: 0; margin: 0 auto; display: table;">
         {% for album in albums %}
-            <li><a href="{{ url_for('album', album_name=album) }}">{{ album }}</a></li>
+            <li style="margin: 10px 0;">
+                <a href="{{ url_for('album', album_name=album) }}" 
+                   style="display: inline-block; background-color: #ff0000 !important; color: white !important; padding: 10px 20px !important; text-decoration: none !important; border-radius: 5px !important; font-weight: bold;">
+                    {{ album }}
+                </a>
+            </li>
         {% else %}
-            <li>Альбомы не найдены</li>
+            <li style="margin: 10px 0;">
+                <span style="display: inline-block; background-color: #ff0000 !important; color: white !important; padding: 10px 20px !important; border-radius: 5px !important;">
+                    Альбомы не найдены
+                </span>
+            </li>
         {% endfor %}
     </ul>
 
-    <a href="{{ url_for('upload') }}">Загрузить фото</a>
+    <a href="{{ url_for('upload') }}" 
+       style="display: inline-block; margin-top: 20px; background-color: #ff0000 !important; color: white !important; padding: 10px 20px !important; text-decoration: none !important; border-radius: 5px !important; font-weight: bold;">
+        Загрузить фото
+    </a>
 </body>
 </html>
