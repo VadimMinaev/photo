@@ -3,13 +3,13 @@
 {% block content %}
 <div class="centered-container">
     <h1>Альбомы</h1>
-    <ul>
+    <div class="albums-buttons">
         {% for album in albums %}
-            <li><a href="{{ url_for('album', album_name=album) }}">{{ album }}</a></li>
+            <a href="{{ url_for('album', album_name=album) }}" class="button-red album-btn">{{ album }}</a>
         {% else %}
-            <li>Альбомы не найдены</li>
+            <p>Альбомы не найдены</p>
         {% endfor %}
-    </ul>
+    </div>
     <a href="{{ url_for('upload') }}" class="button-red">Загрузить фото</a>
     <a href="{{ url_for('settings') }}" class="button-red">Настройки</a>
 </div>

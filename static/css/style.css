@@ -24,7 +24,7 @@ body {
     font-size: 18px;
     border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease;
     min-width: 180px;
     text-align: center;
     display: inline-block;
@@ -84,3 +84,19 @@ a {
     max-height: 90%;
     border-radius: 10px;
 }
+.albums-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.album-btn {
+    min-width: 180px;
+    font-weight: bold;
+    margin-bottom: 0;
+    /* Можно добавить индивидуальный цвет для альбомных кнопок */
+    /* background-color: #ffb703; */
+}
+
